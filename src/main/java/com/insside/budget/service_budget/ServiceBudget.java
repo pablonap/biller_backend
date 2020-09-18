@@ -6,6 +6,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 
 import lombok.Data;
 
@@ -18,14 +20,26 @@ public class ServiceBudget {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 	
+	@NotNull
+	@Size(min = 4, max = 5)
 	private String code;
+
+	@NotNull
+	@Size(min = 4, max = 15)
 	private String name;
+
+	@NotNull
+	@Size(min = 4, max = 255)
 	private String detail;
+
+	@NotNull
 	private double price;
 	
 	@Column(name="area_id")
+	@NotNull
 	private Integer areaId;
 	
+	@NotNull
 	private Boolean optional;
 	
 }
