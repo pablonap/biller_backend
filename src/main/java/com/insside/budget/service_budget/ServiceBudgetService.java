@@ -18,4 +18,8 @@ public class ServiceBudgetService {
 		return serviceBudgetRepository.findAll();
 	}
 
+	public ServiceBudget save(ServiceBudget serviceBudget) {
+		return serviceBudgetRepository.save(serviceBudget);
+	}
+
 }
