@@ -3,7 +3,9 @@ package com.insside.budget.service_budget;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -31,6 +33,22 @@ public class ServiceBudgetController {
 	@PutMapping("/services")
 	public void updateServiceBudget(@RequestBody ServiceBudget serviceBudget) {
 		serviceBudgetService.save(serviceBudget);
+	}
+	
+	@DeleteMapping("/services/{serviceBudgetId}")
+	public String deleteServiceBudget(@PathVariable int serviceBudgetId) {
+		
+		ServiceBudget serviceDb = serviceBudgetService.getService(serviceBudgetId);
+		
+		String message = "Service not found";
+
+		if (serviceDb != null) {
+			serviceBudgetService.delete(serviceBudgetId);
+			
+			message = "Deleted service with id " + serviceBudgetId;
+		}
+		
+		return message;
 	}
 	
 }
