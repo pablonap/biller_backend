@@ -20,19 +20,19 @@ public class ServiceBudget {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 	
-	@NotNull
+	@NotNull(message = "{budget.constraints.code.NotNull.message}")
 	@Size(min = 4, max = 5)
 	private String code;
 
-	@NotNull
+	@NotNull(message = "{budget.constraints.name.NotNull.message}")
 	@Size(min = 4, max = 15)
 	private String name;
 
-	@NotNull
+	@NotNull(message = "{budget.constraints.detail.NotNull.message}")
 	@Size(min = 4, max = 255)
 	private String detail;
 
-	@NotNull
+	@NotNull(message = "{budget.constraints.price.NotNull.message}")
 	private double price;
 	
 	@Column(name="area_id")
