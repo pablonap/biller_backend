@@ -1,6 +1,5 @@
 package com.insside.budget.service_budget;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -34,10 +33,6 @@ public class ServiceBudget {
 
 	@NotNull(message = "{budget.constraints.price.NotNull.message}")
 	private double price;
-	
-	@Column(name="area_id")
-	@NotNull
-	private Integer areaId;
 	
 	@NotNull
 	private Boolean optional;
