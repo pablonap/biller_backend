@@ -1,6 +1,7 @@
 package com.insside.biller.budget;
 
-import java.util.Date;
+import java.time.LocalDate;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -8,11 +9,15 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.insside.biller.discount.Discount;
 import com.insside.biller.payment.Payment;
+import com.insside.biller.service_budget.ServiceBudget;
 
 import lombok.Data;
 
@@ -27,7 +32,7 @@ public class Budget {
 	private Integer number;
 	
 	@Column(name="creation_date")
-	private Date creationDate;
+	private LocalDate creationDate;
 	
 	@Column(name="expiration_days")
 	private Integer expirationDays;
@@ -45,5 +50,14 @@ public class Budget {
 	@OneToOne
 	@JoinColumn(name="id_discount")
 	private Discount discount;
+	
+	@ManyToMany
+	@JoinTable(
+		name="service_budget",
+		joinColumns=@JoinColumn(name="budget_id"),
+		inverseJoinColumns=@JoinColumn(name="service_id") 
+		)
+	@JsonIgnore
+	private List<ServiceBudget> serviceBudgets;
 
 }
