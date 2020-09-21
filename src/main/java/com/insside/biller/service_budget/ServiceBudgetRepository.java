@@ -1,4 +1,4 @@
-package com.insside.budget.service_budget;
+package com.insside.biller.service_budget;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

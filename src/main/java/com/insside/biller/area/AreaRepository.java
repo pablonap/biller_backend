@@ -1,4 +1,4 @@
-package com.insside.budget.area;
+package com.insside.biller.area;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 

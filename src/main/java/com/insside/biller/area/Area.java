@@ -1,4 +1,4 @@
-package com.insside.budget.area;
+package com.insside.biller.area;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -15,7 +15,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.insside.budget.service_budget.ServiceBudget;
+import com.insside.biller.service_budget.ServiceBudget;
 
 import lombok.Data;
 

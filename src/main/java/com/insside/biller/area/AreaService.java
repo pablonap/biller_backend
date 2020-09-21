@@ -1,4 +1,4 @@
-package com.insside.budget.area;
+package com.insside.biller.area;
 
 import java.util.List;
 import java.util.Optional;

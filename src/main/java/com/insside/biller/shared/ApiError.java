@@ -1,4 +1,4 @@
-package com.insside.budget.shared;
+package com.insside.biller.shared;
 
 import java.util.Date;
 import java.util.Map;

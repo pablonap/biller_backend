@@ -1,4 +1,4 @@
-package com.insside.budget.service_budget;
+package com.insside.biller.service_budget;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;

@@ -1,4 +1,4 @@
-package com.insside.budget.shared;
+package com.insside.biller.shared;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;

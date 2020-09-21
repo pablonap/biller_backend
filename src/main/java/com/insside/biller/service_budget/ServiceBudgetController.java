@@ -1,4 +1,4 @@
-package com.insside.budget.service_budget;
+package com.insside.biller.service_budget;
 
 import java.util.HashMap;
 import java.util.List;
@@ -23,8 +23,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.insside.budget.shared.ApiError;
-import com.insside.budget.shared.GenericResponse;
+import com.insside.biller.shared.ApiError;
+import com.insside.biller.shared.GenericResponse;
 
 @RestController
 @RequestMapping("/api")
