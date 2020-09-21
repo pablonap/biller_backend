@@ -51,7 +51,7 @@ public class ServiceBudget {
 		joinColumns=@JoinColumn(name="service_id"),
 		inverseJoinColumns=@JoinColumn(name="budget_id") 
 		)
-//	@JsonIgnore
+	@JsonIgnore
 	private List<Budget> budgets;
 	
 }
