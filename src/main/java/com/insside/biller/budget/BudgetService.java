@@ -18,6 +18,16 @@ public class BudgetService {
 	public List<Budget> getAllBudgets() {
 		return budgetRepository.findAll();
 	}
+
+	public Integer calculateNewNumber() {
+		Budget budget = budgetRepository.findTopByOrderByIdDesc();
+		
+		if (budget == null) {
+			return 1;
+		}
+		
+		return budget.getNumberBudget() + 1;
+	}
 	
 
 }

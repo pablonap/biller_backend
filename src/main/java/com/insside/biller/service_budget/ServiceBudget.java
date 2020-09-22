@@ -1,20 +1,19 @@
 package com.insside.biller.service_budget;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.insside.biller.budget.Budget;
+import com.insside.biller.budget_detail.BudgetDetail;
 
 import lombok.Data;
 
@@ -45,13 +44,13 @@ public class ServiceBudget {
 	@NotNull
 	private Boolean optional;
 
-	@ManyToMany
-	@JoinTable(
-		name="service_budget",
-		joinColumns=@JoinColumn(name="service_id"),
-		inverseJoinColumns=@JoinColumn(name="budget_id") 
-		)
+	@OneToMany(mappedBy="serviceBudget")
 	@JsonIgnore
-	private List<Budget> budgets;
+	private List<BudgetDetail> budgetDetails = new ArrayList<>();
+
+	public void add(BudgetDetail budgetDetail ) {
+		budgetDetails.add(budgetDetail);
+		budgetDetail.setServiceBudget(this);
+	}
 	
 }

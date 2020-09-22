@@ -1,5 +1,6 @@
 package com.insside.biller.budget;
 
+import java.time.LocalDate;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -31,6 +32,10 @@ public class BudgetController {
 
 	@PostMapping("/budgets")
 	public void save(@RequestBody Budget budget) throws Exception {
+		Integer newNumber = budgetService.calculateNewNumber();
+		
+		budget.setNumberBudget(newNumber);
+
 		Company companyDb = 
 				companyService.getCompanyById(budget.getCompany().getId());
 		
@@ -39,7 +44,8 @@ public class BudgetController {
 		}
 		
 		budget.setCompany(companyDb);
-
+		budget.setCreationDate(LocalDate.now());
+		
 		budgetService.save(budget);
 	}
 

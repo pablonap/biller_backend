@@ -1,25 +1,26 @@
 package com.insside.biller.budget;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
+import com.insside.biller.budget_detail.BudgetDetail;
 import com.insside.biller.company.Company;
 import com.insside.biller.discount.Discount;
 import com.insside.biller.payment.Payment;
-import com.insside.biller.service_budget.ServiceBudget;
 
 import lombok.Data;
 
@@ -31,7 +32,8 @@ public class Budget {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private Long id;
 	
-	private Integer number;
+	@Column(name="nro_budget")
+	private Integer numberBudget;
 	
 	@Column(name="creation_date")
 	private LocalDate creationDate;
@@ -57,12 +59,12 @@ public class Budget {
 	@JoinColumn(name="id_discount")
 	private Discount discount;
 	
-	@ManyToMany
-	@JoinTable(
-		name="service_budget",
-		joinColumns=@JoinColumn(name="budget_id"),
-		inverseJoinColumns=@JoinColumn(name="service_id") 
-		)
-	private List<ServiceBudget> serviceBudgets;
+	@OneToMany(fetch=FetchType.EAGER, cascade={CascadeType.ALL})
+	@JoinColumn(name="budget_id")
+	private List<BudgetDetail> budgetDetails = new ArrayList<>();
+
+	public void add(BudgetDetail budgetDetail ) {
+		budgetDetails.add(budgetDetail);
+	}
 
 }
