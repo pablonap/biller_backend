@@ -26,6 +26,9 @@ public class BudgetDetail {
 	
 	@Column(name="unit_price")
 	private Double unitPrice;
+
+	@Column(name="service_description")
+	private String serviceDescription;
 	
 	@ManyToOne
 	@JoinColumn(name="service_id")
