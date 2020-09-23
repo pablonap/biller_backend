@@ -1,10 +1,17 @@
 package com.insside.biller.discount;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.insside.biller.budget_discount_line.BudgetDiscountLine;
 
 import lombok.Data;
 
@@ -20,4 +27,7 @@ public class Discount {
 	private Double value;
 	private String description;
 	
+	@OneToMany(mappedBy="discount")
+	@JsonIgnore
+	private List<BudgetDiscountLine> budgetDiscountLine = new ArrayList<>();
 }

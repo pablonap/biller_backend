@@ -68,5 +68,8 @@ public class Budget {
 	public void add(BudgetDetail budgetDetail ) {
 		budgetDetails.add(budgetDetail);
 	}
+	
+	@Column(name="total_amount")
+	private Double totalAmount;
 
 }

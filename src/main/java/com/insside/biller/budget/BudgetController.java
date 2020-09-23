@@ -60,6 +60,8 @@ public class BudgetController {
 			bd.setUnitPrice(serviceBudgetDb.getPrice());
 		}
 		
+		// TODO: Calcular totalAmount
+		
 		budgetService.save(budget);
 	}
 

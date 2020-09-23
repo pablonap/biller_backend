@@ -33,5 +33,8 @@ public class BudgetDetail {
 	@ManyToOne
 	@JoinColumn(name="service_id")
 	private ServiceBudget serviceBudget;
+	
+	@Column(name="total_amount")
+	private Double totalAmount;
 
 }
