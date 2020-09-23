@@ -29,5 +29,10 @@ public class Discount {
 	
 	@OneToMany(mappedBy="discount")
 	@JsonIgnore
-	private List<BudgetDiscountLine> budgetDiscountLine = new ArrayList<>();
+	private List<BudgetDiscountLine> budgetDiscountLines = new ArrayList<>();
+
+	public void add(BudgetDiscountLine budgetDiscountLine ) {
+		budgetDiscountLines.add(budgetDiscountLine);
+		budgetDiscountLine.setDiscount(this);
+	}
 }

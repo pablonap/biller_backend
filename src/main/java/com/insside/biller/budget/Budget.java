@@ -18,8 +18,8 @@ import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 import com.insside.biller.budget_detail.BudgetDetail;
+import com.insside.biller.budget_discount_line.BudgetDiscountLine;
 import com.insside.biller.company.Company;
-import com.insside.biller.discount.Discount;
 import com.insside.biller.payment.Payment;
 import com.insside.biller.payment_condition.PaymentCondition;
 
@@ -57,9 +57,13 @@ public class Budget {
 	@JoinColumn(name="id_payment")
 	private Payment payment;
 
-	@OneToOne
-	@JoinColumn(name="id_discount")
-	private Discount discount;
+	@OneToMany(cascade={CascadeType.ALL})
+	@JoinColumn(name="id_budget")
+	private List<BudgetDiscountLine> budgetDiscountLines = new ArrayList<>();
+
+	public void add(BudgetDiscountLine budgetDiscountLine ) {
+		budgetDiscountLines.add(budgetDiscountLine);
+	}
 	
 	@OneToMany(fetch=FetchType.EAGER, cascade={CascadeType.ALL})
 	@JoinColumn(name="budget_id")
