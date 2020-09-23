@@ -21,6 +21,7 @@ import com.insside.biller.budget_detail.BudgetDetail;
 import com.insside.biller.company.Company;
 import com.insside.biller.discount.Discount;
 import com.insside.biller.payment.Payment;
+import com.insside.biller.payment_condition.PaymentCondition;
 
 import lombok.Data;
 
@@ -48,8 +49,9 @@ public class Budget {
 	@Column(name="client_name")
 	private String clientName;
 
-	@Column(name="payment_condition")
-	private Integer paymentCondition;
+	@OneToOne
+	@JoinColumn(name="id_payment_condition")
+	private PaymentCondition paymentCondition;
 
 	@OneToOne
 	@JoinColumn(name="id_payment")
