@@ -67,20 +67,15 @@ public class ServiceBudgetController {
 		serviceBudgetService.save(serviceBudget);
 	}
 	
-	@DeleteMapping("/services/{serviceBudgetId}")
-	public String deleteServiceBudget(@PathVariable int serviceBudgetId) {
+	@DeleteMapping("/services/{id}")
+	public void deleteServiceBudget(@PathVariable int id) {
 		
-		ServiceBudget serviceDb = serviceBudgetService.getService(serviceBudgetId);
-		
-		String message = "Service not found";
+		ServiceBudget serviceDb = serviceBudgetService.getService(id);
 
 		if (serviceDb != null) {
-			serviceBudgetService.delete(serviceBudgetId);
-			
-			message = "Deleted service with id " + serviceBudgetId;
+			serviceBudgetService.delete(id);
 		}
 		
-		return message;
 	}
 	
 	@ExceptionHandler({MethodArgumentNotValidException.class})

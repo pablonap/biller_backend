@@ -111,4 +111,8 @@ public class BudgetService {
 		return totalAmount - (discount * totalAmount);
 	}
 
+	public void delete(long id) {
+		budgetRepository.deleteById(id);
+	}
+
 }
