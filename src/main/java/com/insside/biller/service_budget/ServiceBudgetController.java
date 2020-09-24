@@ -24,6 +24,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.insside.biller.area.Area;
+import com.insside.biller.area.AreaService;
 import com.insside.biller.shared.ApiError;
 import com.insside.biller.shared.GenericResponse;
 
@@ -34,6 +36,9 @@ public class ServiceBudgetController {
 
 	@Autowired
 	private ServiceBudgetService serviceBudgetService;
+
+	@Autowired
+	private AreaService areaService;
 	
 	@GetMapping("/services")
 	public List<ServiceBudget> getServiceBudgets() {
@@ -50,6 +55,8 @@ public class ServiceBudgetController {
 	
 	@PutMapping("/services")
 	public void updateServiceBudget(@RequestBody ServiceBudget serviceBudget) {
+		Area areaDb = areaService.getAreaById(serviceBudget.getArea().getId());
+		serviceBudget.setArea(areaDb);
 		serviceBudgetService.save(serviceBudget);
 	}
 	

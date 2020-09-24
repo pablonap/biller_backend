@@ -30,9 +30,10 @@ public class Area implements Serializable {
 	
 	private String name;
 	
-	@OneToMany(fetch=FetchType.LAZY, cascade={CascadeType.ALL})
-	@JoinColumn(name="area_id")
+//	@OneToMany(fetch=FetchType.LAZY, cascade={CascadeType.ALL})
+//	@JoinColumn(name="area_id")
 	@JsonIgnore
+	@OneToMany(mappedBy="area")
 	private List<ServiceBudget> serviceBudgets = new ArrayList<>();
 	
 	public void add(ServiceBudget serviceBudget) {

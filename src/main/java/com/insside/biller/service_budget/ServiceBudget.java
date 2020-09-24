@@ -7,12 +7,15 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.insside.biller.area.Area;
 import com.insside.biller.budget_detail.BudgetDetail;
 
 import lombok.Data;
@@ -26,27 +29,31 @@ public class ServiceBudget {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 	
-	@NotNull(message = "{budget.constraints.code.NotNull.message}")
-	@Size(min = 4, max = 5)
+//	@NotNull(message = "{budget.constraints.code.NotNull.message}")
+//	@Size(min = 4, max = 5)
 	private String code;
 
-	@NotNull(message = "{budget.constraints.name.NotNull.message}")
-	@Size(min = 4, max = 15)
+//	@NotNull(message = "{budget.constraints.name.NotNull.message}")
+//	@Size(min = 4, max = 15)
 	private String name;
 
-	@NotNull(message = "{budget.constraints.detail.NotNull.message}")
-	@Size(min = 4, max = 255)
+//	@NotNull(message = "{budget.constraints.detail.NotNull.message}")
+//	@Size(min = 4, max = 255)
 	private String detail;
 
-	@NotNull(message = "{budget.constraints.price.NotNull.message}")
+//	@NotNull(message = "{budget.constraints.price.NotNull.message}")
 	private double price;
 	
-	@NotNull
+//	@NotNull
 	private Boolean optional;
 
 	@OneToMany(mappedBy="serviceBudget")
 	@JsonIgnore
 	private List<BudgetDetail> budgetDetails = new ArrayList<>();
+	
+	@ManyToOne
+	@JoinColumn(name="area_id")
+	private Area area;
 
 	public void add(BudgetDetail budgetDetail ) {
 		budgetDetails.add(budgetDetail);
