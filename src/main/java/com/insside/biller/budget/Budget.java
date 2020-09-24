@@ -42,7 +42,8 @@ public class Budget {
 	@Column(name="expiration_days")
 	private Integer expirationDays;
 	
-	@ManyToOne(cascade=CascadeType.ALL)
+	@ManyToOne(cascade= {CascadeType.PERSIST, CascadeType.MERGE,
+			CascadeType.DETACH, CascadeType.REFRESH})
 	@JoinColumn(name="id_company")
 	private Company company;
 
