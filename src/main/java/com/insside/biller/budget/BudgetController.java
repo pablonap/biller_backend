@@ -6,7 +6,9 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -52,5 +54,43 @@ public class BudgetController {
 		
 		budgetService.save(budget);
 	}
+	
+	@GetMapping("/budgets/{id}")
+	public Budget getBudget(@PathVariable Long id) {
+		return budgetService.getBudgetById(id);
+	}
+	
+	@PutMapping("/budgets/{id}")
+	public void update(@RequestBody Budget budget, @PathVariable Long id) {
+		Budget budgetDb = budgetService.getBudgetById(id);
+		
+		budget.setNumberBudget(budgetDb.getNumberBudget());
+
+		budget.setCreationDate(budgetDb.getCreationDate());
+
+		Company companyDb = 
+				companyService.getCompanyById(budget.getCompany().getId());
+		
+		budget.setCompany(companyDb);
+		
+		budgetService.setBudgetDetailFields(budget.getBudgetDetails());
+		
+		budgetService.setTotalAmmount(budget);
+		
+		budgetService.setBudgetDiscountLineFields(budget);
+		
+		budgetService.save(budget);
+	}
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 
 }

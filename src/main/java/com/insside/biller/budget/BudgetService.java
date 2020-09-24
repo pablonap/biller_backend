@@ -1,6 +1,7 @@
 package com.insside.biller.budget;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -31,6 +32,17 @@ public class BudgetService {
 	public List<Budget> getAllBudgets() {
 		return budgetRepository.findAll();
 	}
+	
+	public Budget getBudgetById(long id) {
+		Optional<Budget> budgetTemp = budgetRepository.findById(id);
+		Budget budget = null;
+		
+		if (budgetTemp.isPresent()) {
+			budget = budgetTemp.get();
+		}
+
+		return budget;
+	}
 
 	public Integer calculateNewNumber() {
 		Budget budget = budgetRepository.findTopByOrderByIdDesc();
@@ -52,6 +64,7 @@ public class BudgetService {
 			bd.setUnitPrice(serviceBudgetDb.getPrice());
 			
 			bd.setTotalAmount(calculateTotalAmountPerBudgetDetail(bd));
+			
 		}
 		
 	}
