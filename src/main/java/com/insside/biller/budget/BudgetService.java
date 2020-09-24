@@ -65,6 +65,8 @@ public class BudgetService {
 			
 			bd.setTotalAmount(calculateTotalAmountPerBudgetDetail(bd));
 			
+			bd.getServiceBudget().setOptional(serviceBudgetDb.getOptional());
+			
 		}
 		
 	}
@@ -78,7 +80,9 @@ public class BudgetService {
 		Double totalAmount = new Double(0);
 
 		for(BudgetDetail bd : budget.getBudgetDetails()) {
-			totalAmount += bd.getTotalAmount();
+			if (bd.getServiceBudget().getOptional() == false) {
+				totalAmount += bd.getTotalAmount();
+			}
 		}
 		
 		budget.setTotalAmount(totalAmount);
