@@ -48,12 +48,19 @@ public class ServiceBudgetController {
 	
 	@PostMapping("/services")
 	public GenericResponse createServiceBudget(@Valid @RequestBody ServiceBudget serviceBudget) {
+		Area areaDb = areaService.getAreaById(serviceBudget.getArea().getId());
+		serviceBudget.setArea(areaDb);
 		serviceBudgetService.save(serviceBudget);
 		
 		return new GenericResponse("Service saved");
 	}
 	
-	@PutMapping("/services")
+	@GetMapping("/services/{id}")
+	public ServiceBudget getServiceById(@PathVariable int id) {
+		return serviceBudgetService.getService(id);
+	}
+
+	@PutMapping("/services/{id}")
 	public void updateServiceBudget(@RequestBody ServiceBudget serviceBudget) {
 		Area areaDb = areaService.getAreaById(serviceBudget.getArea().getId());
 		serviceBudget.setArea(areaDb);
